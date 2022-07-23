@@ -29,7 +29,6 @@ struct PopularMoviesView: View {
                                 if(index == movies.movies.count - 1){
                                     movies.page += 1
                                     loadPopularMovies()
-                                    print("\(movies.movies.count) load pages \(movies.page) \(index)")
                                 }
                             })
                         }
@@ -38,9 +37,9 @@ struct PopularMoviesView: View {
                         ProgressView()
                     }
                 }
-            }.navigationTitle("Popular").onAppear{
-                loadPopularMovies()
-            }
+            }.navigationTitle("Popular")
+        }.onAppear{
+            loadPopularMovies()
         }
     }
     
@@ -49,7 +48,6 @@ struct PopularMoviesView: View {
 
 extension PopularMoviesView :  PopularMoviesDisplayLogic{
     func displayMovies(viewModel: PopularMoviesModel.LoadPopularMovies.ViewModel) {
-        print("reach here")
         movies.page = viewModel.page ?? movies.page
         movies.hasNextPage = viewModel.totalPage ?? 0 > movies.page ? true : false
         if(movies.page == 1){
@@ -57,9 +55,6 @@ extension PopularMoviesView :  PopularMoviesDisplayLogic{
         }else {
             movies.movies.append(contentsOf: viewModel.movies ?? [])
         }
-        print("\(movies.page) \(movies.hasNextPage) adfasdf \(movies.movies.count)")
-        print("\(viewModel.totalPage!) adfasdf \(viewModel.movies!.count)")
-    
     }
     
     func loadPopularMovies(){
