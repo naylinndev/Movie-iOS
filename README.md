@@ -1,4 +1,4 @@
-#Gallery iOS
+#Movie App iOS
 It's sample project which is written with SwiftUI.
 
 #Screenshot
